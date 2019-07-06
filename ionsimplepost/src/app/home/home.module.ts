@@ -21,6 +21,15 @@ const routes: Routes = [
               loadChildren:'./post-home/post-home.module#PostHomePageModule'
             }
           ]
+        },
+        {
+          path:'new-post',
+          children:[
+            {
+              path:'',
+              loadChildren:'./new-post/new-post.module#NewPostPageModule'
+            }
+          ]
         }
       ]
     },
