@@ -30,6 +30,15 @@ const routes: Routes = [
               loadChildren:'./new-post/new-post.module#NewPostPageModule'
             }
           ]
+        },
+        {
+          path:'news',
+          children:[
+            {
+              path:'',
+              loadChildren:'./news/news.module#NewsPageModule'
+            }
+          ]
         }
       ]
     },
