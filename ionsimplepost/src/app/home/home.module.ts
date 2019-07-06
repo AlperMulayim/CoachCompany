@@ -2,21 +2,40 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Route, Routes } from '@angular/router';
 
 import { HomePage } from './home.page';
 
+
+
+const routes: Routes = [
+    {
+      path:"tabs",
+      component:HomePage,
+      children:[
+        {
+          path:"post-home",
+          children:[
+            {
+              path:'',
+              loadChildren:'./post-home/post-home.module#PostHomePageModule'
+            }
+          ]
+        }
+      ]
+    },
+    {
+      path:'',
+      redirectTo:'/home/tabs/post-home',
+      pathMatch:'full'
+    }
+];
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    RouterModule.forChild([
-      {
-        path: '',
-        component: HomePage
-      }
-    ])
+    RouterModule.forChild(routes)
   ],
   declarations: [HomePage]
 })
