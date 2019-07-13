@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { PostService } from './post.service';
+import { Post } from './Post';
 
 @Component({
   selector: 'app-post-home',
@@ -7,9 +9,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PostHomePage implements OnInit {
 
-  constructor() { }
+  public postList : Post[] = [];
+  public lastPost : Post;
+  constructor(private postService: PostService) { }
 
   ngOnInit() {
+
+  }
+
+
+  ionViewWillEnter() {
+    this.postList = this.postService.getAllPosts();
+    this.lastPost = this.postList[this.postList.length -1];
   }
 
 }
