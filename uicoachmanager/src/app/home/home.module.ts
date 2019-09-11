@@ -5,12 +5,15 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
 import { HomePage } from './home.page';
+import { HomeService } from './home.service';
+import { HttpClient, HttpHandler, HttpHeaders, HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
+    HttpClientModule,
     RouterModule.forChild([
       {
         path: '',
@@ -18,6 +21,7 @@ import { HomePage } from './home.page';
       }
     ])
   ],
+  providers:[HomeService],
   declarations: [HomePage]
 })
 export class HomePageModule {}

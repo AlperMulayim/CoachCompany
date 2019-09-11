@@ -1,5 +1,9 @@
 {
   "name": "uicoachmanager",
   "integrations": {},
-  "type": "angular"
+  "type": "angular",
+  "proxies": [{
+    "path": "/rest",
+    "proxyUrl": "http://localhost:8080"
+}]
 }
