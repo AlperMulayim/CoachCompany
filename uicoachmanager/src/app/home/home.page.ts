@@ -14,12 +14,16 @@ export class HomePage {
   onSignUp(signUpForm: NgForm): void {
     console.log(signUpForm.value);
 
-    this.homeService.getUsers().subscribe((userList: User[]) => {
-      console.log(userList);
-      userList.forEach(user => {
-          console.log(user.validated);
-          console.log(user.name);
-      });
-    });
+  
+
+
+    let myUser : User ={
+      name:  signUpForm.value.userName,
+      password: signUpForm.value.password,
+      validated: false
+    }
+    this.homeService.createUser( 
+      myUser
+     );
   }
 }
