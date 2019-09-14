@@ -9,14 +9,11 @@ import { HomeService, User } from './home.service';
 })
 export class HomePage {
 
+  public signFormVisible : boolean = false;
   constructor(private homeService: HomeService) { }
 
   onSignUp(signUpForm: NgForm): void {
     console.log(signUpForm.value);
-
-  
-
-
     let myUser : User ={
       name:  signUpForm.value.userName,
       password: signUpForm.value.password,
@@ -26,4 +23,22 @@ export class HomePage {
       myUser
      );
   }
+
+  segmentChanged(event : CustomEvent) : void{
+    console.log(event.detail.value);
+    if(event.detail.value === SEGMENT.SIGNUP){
+      this.signFormVisible = true;
+    }
+    else if(event.detail.value === SEGMENT.LOGIN){
+      this.signFormVisible = false;
+    }
+  }
+  onLogin(loginForm : NgForm){
+    
+  }
+}
+
+enum SEGMENT {
+  LOGIN = 'login',
+  SIGNUP = 'sign-up'
 }
