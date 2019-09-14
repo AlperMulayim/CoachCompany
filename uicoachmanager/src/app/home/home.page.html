@@ -80,6 +80,10 @@
               <ion-button color="primary" expand="full" type="submit" [disabled]="!loginForm.valid">
                 LOGIN
               </ion-button>
+              <ion-item *ngIf="showValidationError">
+                <ion-icon name="alert" slot="start"></ion-icon>
+                <ion-label color="danger"> User not valid </ion-label>
+              </ion-item>
             </ion-card-content>
           </ion-card>
         </form>

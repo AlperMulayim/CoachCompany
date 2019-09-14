@@ -7,6 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class HomeService {
 
+  private userValidated : boolean = false;
   constructor( private httpClient : HttpClient) {}
 
   public getUsers() : Observable<User[]>{
@@ -19,8 +20,18 @@ export class HomeService {
     let options = {
       headers:httpHeaders
     }
-    console.log("user :", user);
+   
      this.httpClient.post<User>('rest/users',user).subscribe(()=>{});
+  }
+
+  public loginUser(user : User): boolean{
+    
+      this.httpClient.post<User>('rest/users/login',user).subscribe((result)=>{
+        this.userValidated = true;
+      },(err)=>{
+        this.userValidated = false;
+      });
+      return this.userValidated;
   }
 }
 

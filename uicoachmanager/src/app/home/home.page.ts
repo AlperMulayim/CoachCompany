@@ -10,6 +10,7 @@ import { HomeService, User } from './home.service';
 export class HomePage {
 
   public signFormVisible : boolean = false;
+  public showValidationError : boolean = false;
   constructor(private homeService: HomeService) { }
 
   onSignUp(signUpForm: NgForm): void {
@@ -19,9 +20,7 @@ export class HomePage {
       password: signUpForm.value.password,
       validated: false
     }
-    this.homeService.createUser( 
-      myUser
-     );
+    this.homeService.createUser(myUser);
   }
 
   segmentChanged(event : CustomEvent) : void{
@@ -34,7 +33,16 @@ export class HomePage {
     }
   }
   onLogin(loginForm : NgForm){
+    let user : User ={
+      name: loginForm.value.userName,
+      password : loginForm.value.password,
+      validated:false
+    }
     
+    if(!this.homeService.loginUser(user)){
+      this.showValidationError = true;
+    }
+    else {this.showValidationError = false}
   }
 }
 
